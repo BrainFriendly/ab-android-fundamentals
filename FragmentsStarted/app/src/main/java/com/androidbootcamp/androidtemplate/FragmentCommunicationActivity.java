@@ -27,8 +27,10 @@ implements BlankFragmentListener {
         constraintLayout= findViewById(R.id.constraintLayout);
 
         fragmentManager= getSupportFragmentManager();
-        blankFragment= (BlankFragment)fragmentManager.findFragmentById(R.id.blankFragment);
+        blankFragment= (BlankFragment)fragmentManager.
+                findFragmentById(R.id.blankFragment);
 
+        blankFragment.cambiarColorFondo();
         //blankFragment.ejecutarAccionDesdeFragment("Hola Fragment");
         //blankFragment.executeActionFromFragment("Hello Fragment from Activity...");
     }
@@ -48,8 +50,13 @@ implements BlankFragmentListener {
 
     @Override
     public void callToActivity(Object object) {
-
+        Toast.makeText(this,
+                "Activity "+object.toString(),Toast.LENGTH_LONG).show();
     }
+
+    /*public static void actionActivity(){
+
+    }*/
 
     @Override
     public void cerrarSesion() {

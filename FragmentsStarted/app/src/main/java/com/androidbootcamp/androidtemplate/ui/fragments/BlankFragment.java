@@ -2,7 +2,6 @@ package com.androidbootcamp.androidtemplate.ui.fragments;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidbootcamp.androidtemplate.R;
@@ -20,7 +18,7 @@ import com.androidbootcamp.androidtemplate.ui.listeners.BlankFragmentListener;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link BlankFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -101,16 +99,16 @@ public class BlankFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Log.v("CONSOLE", "1. BlankFragment");
-        Toast.makeText(getActivity(),"Hello from BlankFragment",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),"Hello BlankFragment",Toast.LENGTH_LONG).show();
 
-        /*
-        TextView textViewMessage=getView().findViewById(R.id.textViewMessage);
+
+        /*TextView textViewMessage=getView().findViewById(R.id.textViewMessage);
         textViewMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"Mensaje desde Fragment",Toast.LENGTH_LONG).show();
             }
-        }); */
+        });*/
 
 
         /*
@@ -127,14 +125,20 @@ public class BlankFragment extends Fragment {
                     mListener.actionActivityCambiarColor();
                 }
             }
-        });
+        });*/
 
 
 
         if(mListener!=null){
             Log.v("CONSOLE", "2. Enviar desde BlankFragment");
-            mListener.callToActivity("Lo que sea ");
-        }*/
+            //mListener.callToActivity("Lo que sea... ");
+            mListener.actionActivityCambiarColor();
+        }
+        /*
+        FragmentCommunicationActivity fActivity=
+        ((FragmentCommunicationActivity)getActivity());
+        fActivity.actionActivityCambiarColor();*/
+        //FragmentCommunicationActivity.actionActivity();
     }
 
     public void executeActionFromFragment(String message){

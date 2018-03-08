@@ -9,6 +9,8 @@ package com.androidbootcamp.androidtemplate.ui.listeners;
 public interface OnFirstFragmentListener {
 
     //void goToFragmentAction();
+    void showMessageActivity(String message);
+    void activityChangeBackgroundColor();
 }
 
 

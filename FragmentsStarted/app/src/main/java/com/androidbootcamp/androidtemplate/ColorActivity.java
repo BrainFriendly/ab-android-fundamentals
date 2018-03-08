@@ -25,11 +25,14 @@ public class ColorActivity extends AppCompatActivity implements OnColorListener 
 
         bottomBarFragment= (BottomBarFragment) fragmentManager.findFragmentById(R.id.fragBottom);
         boxFragment= (BoxFragment) fragmentManager.findFragmentById(R.id.fragBox);
+
+        //primero seleccionado
+        seleccionarColor(0);
     }
 
     @Override
     public void seleccionarColor(int pos) {
-       // boxFragment.recibirColoryPintar(pos);
+       boxFragment.recibirColoryPintar(pos);
     }
 
 

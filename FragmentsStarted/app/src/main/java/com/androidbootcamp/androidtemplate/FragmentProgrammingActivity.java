@@ -5,12 +5,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.androidbootcamp.androidtemplate.ui.fragments.BlankFragment;
 import com.androidbootcamp.androidtemplate.ui.listeners.BlankFragmentListener;
 
 
-public class FragmentProgrammingActivity extends AppCompatActivity implements BlankFragmentListener {
+public class FragmentProgrammingActivity extends AppCompatActivity
+        implements BlankFragmentListener {
 
     private FrameLayout frameLayoutContainer;
     private FragmentManager fragmentManager;
@@ -25,7 +27,7 @@ public class FragmentProgrammingActivity extends AppCompatActivity implements Bl
         frameLayoutContainer=findViewById(R.id.frameLayoutContainer);
         fragmentManager= getSupportFragmentManager();
 
-        //addFragment();
+        addFragment();
     }
 
     @Override
@@ -40,7 +42,7 @@ public class FragmentProgrammingActivity extends AppCompatActivity implements Bl
 
     @Override
     public void callToActivity(Object object) {
-
+        Toast.makeText(this,object.toString(),Toast.LENGTH_LONG).show();
     }
 
     @Override

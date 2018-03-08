@@ -2,6 +2,7 @@ package com.androidbootcamp.androidtemplate.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,4 +48,19 @@ public class MyFirstFragment extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mListener!=null){
+                    //mListener.showMessageActivity("Hello from Fragment");
+                    mListener.activityChangeBackgroundColor();
+                }
+            }
+        });
+    }
 }
