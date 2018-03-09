@@ -2,30 +2,28 @@ package com.androidbootcamp.androidtemplate.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.androidbootcamp.androidtemplate.MainMessageActivity;
 import com.androidbootcamp.androidtemplate.R;
+import com.androidbootcamp.androidtemplate.ui.listeners.OnColorListener;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * interface
+ * {} interface
  * to handle interaction events.
- * Use the {@link WriteMessageFragment#newInstance} factory method to
+ * Use the {@link BottomBarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WriteMessageFragment extends Fragment {
+public class BottomBarFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private final String TAG="CONSOLE";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -33,10 +31,14 @@ public class WriteMessageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private MessageListener mListener;
-    private EditText eteMessage;
-    private Button btnSend;
-    private String message;
+    private OnColorListener mListener;
+    private Button btnBox0;
+    private Button btnBox1;
+    private Button btnBox2;
+
+    public BottomBarFragment() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -44,20 +46,16 @@ public class WriteMessageFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment WriteMessageFragment.
+     * @return A new instance of fragment BottomBarFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WriteMessageFragment newInstance(String param1, String param2) {
-        WriteMessageFragment fragment = new WriteMessageFragment();
+    public static BottomBarFragment newInstance(String param1, String param2) {
+        BottomBarFragment fragment = new BottomBarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public WriteMessageFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -73,19 +71,18 @@ public class WriteMessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write_message, container, false);
+        return inflater.inflate(R.layout.fragment_bottom_bar, container, false);
     }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        if (context instanceof MessageListener) {
-            mListener = (MessageListener) context;
+        if (context instanceof OnColorListener) {
+            mListener = (OnColorListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnColorListener");
         }
     }
 
@@ -96,36 +93,34 @@ public class WriteMessageFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        btnBox0= (Button)getView().findViewById(R.id.btnBox0);
+        btnBox1= (Button)getView().findViewById(R.id.btnBox1);
+        btnBox2= (Button)getView().findViewById(R.id.btnBox2);
 
-        eteMessage= (EditText)getView().findViewById(R.id.eteMessage);
-        btnSend= (Button)getView().findViewById(R.id.btnSend);
-
-        //TODO events...
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                message= eteMessage.getText().toString();
-                Log.v(TAG, "1 WriteMessageFragment message " + message);
-                if(mListener!=null)
-                {
-                    mListener.recibiryEnviardesdeFragment(message);
-
-                    //( (MainMessageActivity)(getActivity())).getTwoFragment().mostrarMensaje();
-                }
-            }
-        });
-
-        //btnSend.setOnClickListener(onClickListener);
+        btnBox0.setOnClickListener(this);
+        btnBox1.setOnClickListener(this);
+        btnBox2.setOnClickListener(this);
     }
 
-    private View.OnClickListener onClickListener= new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            message= eteMessage.getText().toString();
-            Log.v(TAG, "1. message " + message);
-            ((MainMessageActivity)getActivity()).recibiryEnviarMensaje(message);
+    @Override
+    public void onClick(View view) {
+        int pos=-1;
+        switch (view.getId()){
+            case R.id.btnBox0:
+                pos=0;
+                break;
+            case R.id.btnBox1:
+                pos=1;
+                break;
+            case R.id.btnBox2:
+                pos=2;
+                break;
         }
-    };
+
+        if(pos>=0){
+            mListener.seleccionarColor(pos);
+        }
+    }
 }

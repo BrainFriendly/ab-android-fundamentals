@@ -3,20 +3,25 @@ package com.androidbootcamp.androidtemplate.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.androidbootcamp.androidtemplate.R;
+import com.androidbootcamp.androidtemplate.ui.listeners.OnTabNavListener;
 
 
-public class ShowMessageFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {} interface
+ * to handle interaction events.
+ * Use the {@link WebFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class WebFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private final String TAG="CONSOLE";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -24,11 +29,9 @@ public class ShowMessageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private MessageListener mListener;
-    private TextView tviMessage;
-    private String resultMessage;
+    private OnTabNavListener mListener;
 
-    public ShowMessageFragment() {
+    public WebFragment() {
         // Required empty public constructor
     }
 
@@ -36,16 +39,11 @@ public class ShowMessageFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ShowMessageFragment.
+     * @return A new instance of fragment WebFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ShowMessageFragment newInstance(String param1, String param2) {
-        ShowMessageFragment fragment = new ShowMessageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+    public static WebFragment newInstance(Bundle args) {
+        WebFragment fragment = new WebFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,18 +61,18 @@ public class ShowMessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_message, container, false);
+        return inflater.inflate(R.layout.fragment_web, container, false);
     }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof MessageListener) {
-            mListener = (MessageListener) context;
+        if (context instanceof OnTabNavListener) {
+            mListener = (OnTabNavListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnTabNavListener");
         }
     }
 
@@ -84,18 +82,4 @@ public class ShowMessageFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        tviMessage= (TextView)getView().findViewById(R.id.tviMessage);
-        resultMessage= "";
-    }
-
-    public void mostrarMensaje(String message)
-    {
-        Log.v(TAG, "3  ShowMessageFragment mostrarMensaje " + message);
-        if(TextUtils.isEmpty(message))return;
-        resultMessage+="\n"+message;
-        tviMessage.setText(resultMessage);
-    }
 }

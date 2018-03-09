@@ -24,25 +24,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.textView1:
-                    goToActivity(FragmentBasicActivity.class);
-                break;
-            case R.id.textView2:
-                    goToActivity(FragmentProgrammingActivity.class);
-                break;
-            case R.id.textView3:
-                    goToActivity(FragmentCommunicationActivity.class);
-                break;
-            case R.id.textView4:
-                    goToActivity(MainMessageActivity.class);
-                break;
-            case R.id.textView5:
                     goToActivity(StarWarsEventsActivity.class);
                 break;
-            case R.id.textView6:
+            case R.id.textView2:
                     goToActivity(StarWarsEventsFragmentActivity.class);
                 break;
-            case R.id.textView7:
+            case R.id.textView3:
                     goToActivity(StarWarsEventsTabletActivity.class);
+                break;
+            case R.id.textView4:
+                    goToActivity(ColorActivity.class);
+                break;
+            case R.id.textView5:
+                    goToActivity(TabFragmentActivity.class);
+                break;
+
+            case R.id.textView6:
+                    goToActivity(ContactsActivity.class);
+                break;
+            case R.id.textView7:
+                    goToActivity(CardsActivity.class);
                 break;
         }
     }
