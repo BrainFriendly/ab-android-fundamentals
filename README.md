@@ -13,4 +13,6 @@ Developer Guides : Fragments https://developer.android.com/guide/components/frag
 
 Building a Dynamic UI with Fragments https://developer.android.com/training/basics/fragments/index.html
 
+Support Different Screen Sizes https://developer.android.com/training/multiscreen/screensizes.html
+
 
