@@ -36,7 +36,7 @@ public class TabFragmentActivity extends AppCompatActivity implements OnTabNavLi
         //getSupportActionBar().hide();
         ui();
 
-        selectFirst();
+        //selectFirst();
     }
 
     private void selectFirst() {
@@ -92,8 +92,8 @@ public class TabFragmentActivity extends AppCompatActivity implements OnTabNavLi
                 break;
         }
 
-        updateUI(fragmentId);
-        changeFragment(bundle,fragmentId);
+        //updateUI(fragmentId);
+        //changeFragment(bundle,fragmentId);
     }
 
     private void changeFragment(Bundle bundle, int fragmentId) {

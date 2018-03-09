@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.textView1:
-                    goToActivity(StarWarsEventsActivity.class);
+                    //goToActivity(StarWarsEventsActivity.class);
                 break;
             case R.id.textView2:
-                    goToActivity(StarWarsEventsFragmentActivity.class);
+                    //goToActivity(StarWarsEventsFragmentActivity.class);
                 break;
             case R.id.textView3:
-                    goToActivity(StarWarsEventsTabletActivity.class);
+                    //goToActivity(StarWarsEventsTabletActivity.class);
                 break;
             case R.id.textView4:
                     goToActivity(ColorActivity.class);
@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.textView6:
-                    goToActivity(ContactsActivity.class);
+                    //goToActivity(ContactsActivity.class);
                 break;
             case R.id.textView7:
-                    goToActivity(CardsActivity.class);
+                    //goToActivity(CardsActivity.class);
                 break;
         }
     }

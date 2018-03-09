@@ -18,7 +18,7 @@ public class CardsActivity extends AppCompatActivity implements OnCardListener {
         setContentView(R.layout.activity_cards);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ui();
-        populateCards();
+        //populateCards();
 
     }
 
