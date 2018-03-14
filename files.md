@@ -1,6 +1,6 @@
-#Files 
+# Files 
 
-##Almacenamiento interno
+## Almacenamiento interno
 Es posible guardar archivos en el almacenamiento interno del dispositivo. Por defecto, todos los archivos que se guarden en el almacenamiento interno son privados para la aplicación. Otras aplicaciones no podrán acceder a ellos así como tampoco el usuario. Cuando la aplicación es desinstalada los archivos también se borrarán.
 Para crear un archivo privado en el almacenamiento interno es necesario realizar lo siguiente:
 
@@ -27,17 +27,17 @@ Para leer un archivo desde el almacenamiento interno se debe hacer lo siguiente:
  2. Leer los bytes del archivo con `read()`.
  3. Finalmente, cerrar el flujo con `close()`.
 
-###Algunos métodos útiles
+### Algunos métodos útiles
 
  - getFilesDir() obtiene la ruta absoluta al directorio de sistemas de archivos donde se guardan los archivos internos.
  - getDir() crea (o abre si es que existe) un directorio dentro del espacio de almacenamiento interno de la aplicación.
  - deleteFile() quita un archivo guardado en el almacenamiento interno.
  - fileList() muestra un conjunto de archivos que la aplicación guarda actualmente.
 
-##Almacenamiento externo
+## Almacenamiento externo
 Todo dispositivo compatible con Android admite un “almacenamiento externo” compartido, que puedes usar para guardar archivos. Los archivos guardados en el almacenamiento externo pueden ser leídos por cualquier usuario y este puede modificarlos cuando habilita el almacenamiento masivo de USB para transferir archivos a una computadora.
 
-###Como obtener acceso al almacenamiento externo
+### Como obtener acceso al almacenamiento externo
 Es necesario especificar los permisos de sistema del READ_EXTERNAL_STORAGE o WRITE_EXTERNAL_STORAGE para poder realizar acciones de lectura - escritura en archivos del almacenamiento externo.
 
 ```xml
@@ -47,7 +47,7 @@ Es necesario especificar los permisos de sistema del READ_EXTERNAL_STORAGE o WRI
 </manifest>
 ```
 
-###Comprobar la disponibilidad a los medios
+### Comprobar la disponibilidad a los medios
 Antes de comenzar a trabajar con archivos en el almacenamiento externo es necesario si el medio esta disponible. Para esto usamos el método getExternalStorageState(). 
 
 ```java
@@ -60,7 +60,7 @@ public boolean isExternalStorageWritable() {
     return false;
 }
 
-/* Chequea si almacenamiento externo esta disponible al menos para poder ser leido*/
+/* Verifica si almacenamiento externo esta disponible al menos para poder ser leido*/
 public boolean isExternalStorageReadable() {
     String state = Environment.getExternalStorageState();
     if (Environment.MEDIA_MOUNTED.equals(state) ||
@@ -71,7 +71,7 @@ public boolean isExternalStorageReadable() {
 }
 ```
 
-###Guardar archivos disponibles para otras aplicaciones
+### Guardar archivos disponibles para otras aplicaciones
 Generalmente los archivos que el usuario obtenga mediante la aplicación deben guardarse en una ubicación publica del dispositivo, la cual pueda ser accedida por otras aplicaciones y el usuario pueda copiarlos fácilmente desde el dispositivo.
 Para esto, podemos hacer uso de alguno de los directorios públicos compartidos, como Music/, Pictures/ y Ringtones/.
 
