@@ -1,4 +1,4 @@
-#SQLite
+# SQLite
 
 Android ofrece compatibilidad total con las bases de datos SQLite. Cualquier clase dentro de una aplicación podrá acceder por nombre a cualquier base de datos que crees.
 
@@ -79,7 +79,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 
 Tener en cuenta que la base de datos SQLite es inicializada en *lazy mode* de manera que esta no será creada hasta la primera llamada a `getReadableDatabase()` o `getWriteableDatabase()`. Es por ello que las llamadas a estos métodos deben ser hechas en un hilo secundario.
 
-##Aplicando el patrón Singleton
+## Aplicando el patrón Singleton
 
 Normalmente una base de datos SQLite será usada a través de toda la aplicación como por ejemplo dentro de servicios, actividades, fragmentos, etc. Para esto, las buenas prácticas recomiendan que se haga uso del patrón Singleton con el fin de evitar desperdicio de memoria y creación de instancias innecesarias.
 
@@ -112,7 +112,7 @@ La forma de acceder a una instancia de nuestra base de datos sería la siguiente
 PostsDatabaseHelper helper = PostsDatabaseHelper.getInstance(this);
 ```
 
-##Definir los modelos
+## Definir los modelos
 
 Para este ejemplo definiremos dos clases Post.java y User.java, con el fin de poder acceder a la data más fácilmente.
 
@@ -130,11 +130,11 @@ public class User {
 }
 ```
 
-##Operaciones CRUD
+## Operaciones CRUD
 
 Ahora haremos ejemplos de inserción, lectura, actualización y eliminación de posts y users en nuestra base de datos.
 
-###Insertando nueva data 
+### Insertando nueva data 
 
 ```java
 public class PostsDatabaseHelper extends SQLiteOpenHelper {
@@ -212,7 +212,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 }
 ```
 
-###Leyendo la data
+### Leyendo la data
 
 ```java
 public class PostsDatabaseHelper extends SQLiteOpenHelper {
@@ -258,7 +258,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 }
 ```
 
-###Actualizando data
+### Actualizando data
 ```java
 public class PostsDatabaseHelper extends SQLiteOpenHelper {
     // ...métodos existentes...
@@ -276,7 +276,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 }
 ```
 
-###Eliminando data
+### Eliminando data
 
 ```java
 public class PostsDatabaseHelper extends SQLiteOpenHelper {
@@ -298,7 +298,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 }
 ```
 
-##Como usar el gestor de base de datos?
+## Como usar el gestor de base de datos?
 
 Ahora podemos utilizar el gestor que hemos creado para insertar y leer usuarios y posts desde nuestra base de datos.
 
@@ -373,7 +373,7 @@ No existe un ejecutable `SQLite3` en el dispositivo así que nuestra única opci
 Este se encuentra en `Tools`->`Android Device Monitor`->`File Explorer`.
 Buscar dentro de `/data/<app package name>/databases` y descargar el archivo.
 
-##Referencias
+## Referencias
 
  - https://developer.android.com/guide/topics/data/data-storage.html#db
  - http://www.androiddesignpatterns.com/2012/05/correctly-managing-your-sqlite-database.html
