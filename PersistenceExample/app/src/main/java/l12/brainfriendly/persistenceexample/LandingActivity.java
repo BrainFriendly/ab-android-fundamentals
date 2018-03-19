@@ -1,6 +1,9 @@
 package l12.brainfriendly.persistenceexample;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +22,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import l12.brainfriendly.persistenceexample.persistence.AutoTable;
+import l12.brainfriendly.persistenceexample.persistence.MyDataBaseHelper;
+
 public class LandingActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +32,49 @@ public class LandingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
+        MyDataBaseHelper myDataBaseHelper = MyDataBaseHelper.getInstance(this);
+        SQLiteDatabase database = myDataBaseHelper.getReadableDatabase();
+        Cursor cursor = database.query(AutoTable.TABLE_NAME, null, null, null, null, null, null);
+        List<Auto> autos = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Auto auto = new Auto();
+                auto.setMarca(cursor.getString(cursor.getColumnIndex(AutoTable.MARCA)));
+                auto.setAnho(cursor.getInt(cursor.getColumnIndex(AutoTable.ANHO)));
+                autos.add(auto);
+            } while (cursor.moveToNext());
+        }
+
+        for (int i = 0; i < autos.size(); i++) {
+            Auto auto = autos.get(i);
+            Log.e("auto", auto.getMarca() + " " + auto.getAnho());
+        }
+
+//        insertarAuto();
+//
+
+//        leerFiles();
+
+//        method();
+
+    }
+
+    private void insertarAuto() {
+        Auto auto1 = new Auto();
+        auto1.setMarca("Toyota");
+        auto1.setModelo("Yaris");
+        auto1.setAnho(2013);
+        auto1.setPrecio(16000);
+
+        MyDataBaseHelper myDataBaseHelper = MyDataBaseHelper.getInstance(this);
+        SQLiteDatabase database = myDataBaseHelper.getWritableDatabase();
+
+        ContentValues autoContentValue = AutoTable.getAutoContentValue(auto1);
+        long id = database.insertOrThrow(AutoTable.TABLE_NAME, null, autoContentValue);
+        Log.e("BD", "id= " + id);
+    }
+
+    private void leerFiles() {
         String FILENAME = "hello_file";
         String content = "hello world!";
 
@@ -56,9 +105,6 @@ public class LandingActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        method();
-
     }
 
     private void method() {
@@ -85,7 +131,8 @@ public class LandingActivity extends AppCompatActivity {
         String autosJson = sb.toString();
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Auto>>(){}.getType();
+        Type listType = new TypeToken<ArrayList<Auto>>() {
+        }.getType();
         List<Auto> autos = new Gson().fromJson(autosJson, listType);
         Log.e("Pablo", autosJson);
     }

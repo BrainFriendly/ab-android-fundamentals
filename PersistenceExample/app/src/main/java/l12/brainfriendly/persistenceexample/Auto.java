@@ -5,9 +5,21 @@ package l12.brainfriendly.persistenceexample;
  */
 
 public class Auto {
+
+    private int id;
     private String marca;
     private String modelo;
+    private double precio;
+    private int anho;
     private String imagen;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getMarca() {
         return marca;
@@ -23,6 +35,22 @@ public class Auto {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getAnho() {
+        return anho;
+    }
+
+    public void setAnho(int anho) {
+        this.anho = anho;
     }
 
     public String getImagen() {
